@@ -2,6 +2,7 @@
     "name": "jeremykenedy/laravel-https",
     "description": "Laravel Https is middleware to check for Secure HTTP requests. Laravel Https middleware providers can check and redirect if the user is not hitting the https url of your app/site or the request can be automatically redirected to a Secure Http (HTTPS) request.",
     "keywords": [
+            "HTTPS Middleware",
             "Laravel Https",
             "Secure Http",
             "Https"
