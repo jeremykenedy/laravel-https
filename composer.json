@@ -20,10 +20,7 @@
     "autoload": {
         "psr-4": {
             "jeremykenedy\\LaravelHttps\\": "src/"
-        },
-        "files": [
-            "src/app/Logic/helpers.php"
-        ]
+        }
     },
     "extra": {
         "laravel": {
