@@ -154,4 +154,3 @@ LARAVEL_HTTP_ERROR_CODE=403
 
 ### License
 Laravel-https is licensed under the MIT license. Enjoy!
-
