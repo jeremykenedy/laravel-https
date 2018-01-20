@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-https/v/stable)](https://packagist.org/packages/jeremykenedy/laravel-https)
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-https/downloads)](https://packagist.org/packages/jeremykenedy/laravel-https)
 [![Latest Unstable Version](https://poser.pugx.org/jeremykenedy/laravel-https/v/unstable)](https://packagist.org/packages/jeremykenedy/laravel-https)
-[![License](https://poser.pugx.org/jeremykenedy/laravel-https/license)](https://packagist.org/packages/jeremykenedy/laravel-https)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - [About](#about)
 - [Features](#features)
