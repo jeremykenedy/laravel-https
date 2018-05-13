@@ -23,8 +23,8 @@ class LaravelHttpsServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $router->middlewareGroup('checkHTTPS',[CheckHTTPS::class]);
-        $router->middlewareGroup('forceHTTPS',[ForceHTTPS::class]);
+        $router->middlewareGroup('checkHTTPS', [CheckHTTPS::class]);
+        $router->middlewareGroup('forceHTTPS', [ForceHTTPS::class]);
         $this->loadTranslationsFrom(__DIR__.'/resources/lang/', 'LaravelHttps');
     }
 
@@ -35,9 +35,9 @@ class LaravelHttpsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->loadViewsFrom(__DIR__.'/resources/views/', 'LaravelHttps');
-       $this->mergeConfigFrom(__DIR__.'/config/laravel-https.php', 'LaravelHttps');
-       $this->publishFiles();
+        $this->loadViewsFrom(__DIR__.'/resources/views/', 'LaravelHttps');
+        $this->mergeConfigFrom(__DIR__.'/config/laravel-https.php', 'LaravelHttps');
+        $this->publishFiles();
     }
 
     /**
@@ -60,7 +60,5 @@ class LaravelHttpsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/resources/lang' => base_path('resources/lang/vendor/laravel-https'),
         ], $publishTag);
-
     }
-
 }

@@ -9,7 +9,7 @@ return [
     */
     'messages' => [
         'httpsRequredError' => '403 | Forbidden',
-        'httpsRequred' => 'SSL(HTTPS) is required to view',
+        'httpsRequred'      => 'SSL(HTTPS) is required to view',
     ],
 
 ];
