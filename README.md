@@ -1,4 +1,4 @@
-# Laravel HTTPS Checker
+# Laravel HTTPS Web and API Checker 
 
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-https/v/stable)](https://packagist.org/packages/jeremykenedy/laravel-https)
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-https/downloads)](https://packagist.org/packages/jeremykenedy/laravel-https)
@@ -40,7 +40,7 @@ Laravel Https has can check for HTTPS and throw an error or automatically redire
 |Uses localized language files|
 
 ### Requirements
-* [Laravel 5.1, 5.2, 5.3, 5.4, or 5.5+](https://laravel.com/docs/installation)
+* [Laravel 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6, and 7+](https://laravel.com/docs/installation)
 
 ### Installation Instructions
 1. From your projects root folder in terminal run:
