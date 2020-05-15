@@ -1,7 +1,11 @@
-# Laravel HTTPS Web and API Checker 
+![Laravel Https ](https://github-project-images.s3-us-west-2.amazonaws.com/logos/laravel-https-logo.png)
+
+# Laravel HTTPS Web and API Checker
+Laravel Https is middleware to check for Secure HTTP requests. Laravel Https has can check for HTTPS and throw an error or automatically redirect to HTTPS.
 
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-https/v/stable)](https://packagist.org/packages/jeremykenedy/laravel-https)
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-https/downloads)](https://packagist.org/packages/jeremykenedy/laravel-https)
+[![StyleCI](https://github.styleci.io/repos/110425867/shield?branch=master)](https://github.styleci.io/repos/110425867)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - [About](#about)
@@ -20,11 +24,6 @@
 - [File Tree](#file-tree)
 - [Opening an Issue](#opening-an-issue)
 - [License](#license)
-
-### About
-
-Laravel Https is middleware to check for Secure HTTP requests.
-Laravel Https has can check for HTTPS and throw an error or automatically redirect to HTTPS.
 
 ### Features
 
