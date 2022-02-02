@@ -17,7 +17,10 @@ class ForceHTTPS
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure()) {
+        if (!$request->secure()
+            && config('LaravelHttps.ForceHttpsCheckEnvironment', true) 
+            && app()->environment(config('LaravelHttps.ForceHttpsEnvironmentToCheck', 'production'))
+        ) {
 
             // Force Request URI to HTTPS
             return redirect()->secure($request->getRequestUri());
