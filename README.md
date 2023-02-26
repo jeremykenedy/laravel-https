@@ -39,7 +39,7 @@ Laravel Https is middleware to check for Secure HTTP requests. Laravel Https has
 |Uses localized language files|
 
 ### Requirements
-* [Laravel 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6, and 7+](https://laravel.com/docs/installation)
+* [Laravel 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6, 7, 8, 9, 10+](https://laravel.com/docs/installation)
 
 ### Installation Instructions
 1. From your projects root folder in terminal run:
@@ -163,7 +163,7 @@ Before opening an issue there are a couple of considerations:
 * **Following these instructions show me that you have tried.**
 * If you have a questions send me an email to jeremykenedy@gmail.com
 * Need some help, I can do my best on Slack: https://opensourcehelpgroup.slack.com
-* Please be considerate that this is an open source project that I provide to the community for FREE when openeing an issue. 
+* Please be considerate that this is an open source project that I provide to the community for FREE when openeing an issue.
 
 Open source projects are a the community’s responsibility to use, contribute, and debug.
 
