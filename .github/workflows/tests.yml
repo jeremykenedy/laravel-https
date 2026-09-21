@@ -1,0 +1,85 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Laravel ${{ matrix.laravel }} / PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { laravel: '5.1.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.2.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.3.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.4.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.5.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.6.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.7.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '5.8.*', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '^6.0', php: '7.2', phpunit: '^8.5', legacy: true }
+          - { laravel: '^7.0', php: '7.4', phpunit: '^9.6', legacy: true }
+          - { laravel: '^8.0', php: '8.0', phpunit: '^9.6', legacy: true }
+          - { laravel: '^9.0', php: '8.1', phpunit: '^9.6', legacy: true }
+          - { laravel: '^10.0', php: '8.2', phpunit: '^9.6', legacy: true }
+          - { laravel: '^11.0', php: '8.2', phpunit: '^9.6', legacy: true }
+          - { laravel: '^12.0', php: '8.2', phpunit: '^9.6', legacy: false }
+          - { laravel: '^12.0', php: '8.3', phpunit: '^12.5', legacy: false }
+          - { laravel: '^13.0', php: '8.3', phpunit: '^12.5', legacy: false }
+          - { laravel: '^13.0', php: '8.4', phpunit: '^12.5', legacy: false }
+          - { laravel: '^13.0', php: '8.5', phpunit: '^12.5', legacy: false }
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, dom, fileinfo
+          coverage: none
+          tools: composer:v2
+      - name: Select test dependencies
+        env:
+          LARAVEL_VERSION: ${{ matrix.laravel }}
+          PHPUNIT_VERSION: ${{ matrix.phpunit }}
+        run: |
+          composer remove --dev laravel/pint --no-update --no-interaction
+          composer require --dev "laravel/framework:${LARAVEL_VERSION}" "phpunit/phpunit:${PHPUNIT_VERSION}" --no-update --no-interaction
+      - name: Install supported dependencies
+        if: ${{ !matrix.legacy }}
+        run: composer update --no-plugins --prefer-dist --no-interaction --no-progress
+      - name: Install historical compatibility dependencies
+        if: matrix.legacy
+        env:
+          COMPOSER_NO_SECURITY_BLOCKING: '1'
+        run: composer update --no-plugins --prefer-dist --no-interaction --no-progress
+      - name: Check PHP syntax
+        run: find src tests -name '*.php' ! -name '*.blade.php' -print0 | xargs -0 -n1 php -l
+      - run: composer test
+
+  quality:
+    name: Style, coverage, and dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, fileinfo
+          coverage: xdebug
+          tools: composer:v2
+      - run: composer validate --strict
+      - run: composer update --no-plugins --prefer-dist --no-interaction --no-progress
+      - run: composer lint:test
+      - run: vendor/bin/phpunit --coverage-filter src --coverage-text
+      - run: composer audit

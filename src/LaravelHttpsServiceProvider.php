@@ -9,56 +9,50 @@ use jeremykenedy\LaravelHttps\App\Http\Middleware\ForceHTTPS;
 
 class LaravelHttpsServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
     protected $defer = false;
 
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
     public function boot(Router $router)
     {
-        $router->middlewareGroup('checkHTTPS', [CheckHTTPS::class]);
-        $router->middlewareGroup('forceHTTPS', [ForceHTTPS::class]);
+        if (method_exists($router, 'middlewareGroup')) {
+            $router->middlewareGroup('checkHTTPS', [CheckHTTPS::class]);
+            $router->middlewareGroup('forceHTTPS', [ForceHTTPS::class]);
+        } else {
+            $router->middleware('checkHTTPS', CheckHTTPS::class);
+            $router->middleware('forceHTTPS', ForceHTTPS::class);
+        }
+
         $this->loadTranslationsFrom(__DIR__.'/resources/lang/', 'LaravelHttps');
     }
 
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        $this->loadViewsFrom(__DIR__.'/resources/views/', 'LaravelHttps');
+        $path = $this->app->basePath().'/resources/lang/vendor/laravel-https';
+        $languagePath = $this->app['path.lang'];
+
+        $this->app->extend('translation.loader', function ($loader) use ($path, $languagePath) {
+            return new PublishedTranslationLoader($loader, $path, $languagePath);
+        });
+
+        $this->loadViewsFrom([
+            $this->app->basePath().'/resources/views/vendor/laravel-https',
+            __DIR__.'/resources/views/',
+        ], 'LaravelHttps');
+
+        $config = $this->app['config'];
+        $config->set('LaravelHttps', array_merge(
+            $config->get('laravel-https', []),
+            $config->get('LaravelHttps', [])
+        ));
         $this->mergeConfigFrom(__DIR__.'/config/laravel-https.php', 'LaravelHttps');
         $this->publishFiles();
     }
 
-    /**
-     * Publish files for Laravel Logger.
-     *
-     * @return void
-     */
     private function publishFiles()
     {
-        $publishTag = 'LaravelHttps';
-
         $this->publishes([
-            __DIR__.'/config/laravel-https.php' => base_path('config/laravel-https.php'),
-        ], $publishTag);
-
-        $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/vendor/laravel-https'),
-        ], $publishTag);
-
-        $this->publishes([
-            __DIR__.'/resources/lang' => base_path('resources/lang/vendor/laravel-https'),
-        ], $publishTag);
+            __DIR__.'/config/laravel-https.php' => $this->app->basePath().'/config/laravel-https.php',
+            __DIR__.'/resources/views' => $this->app->basePath().'/resources/views/vendor/laravel-https',
+            __DIR__.'/resources/lang' => $this->app->basePath().'/resources/lang/vendor/laravel-https',
+        ], 'LaravelHttps');
     }
 }

@@ -17,6 +17,11 @@
     "require": {
         "php": "^7.2|^8.0|^8.1|^8.2|^8.3"
     },
+    "require-dev": {
+        "laravel/framework": "^5.1 || ^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "laravel/pint": "^1.32",
+        "phpunit/phpunit": "^8.5 || ^9.6 || ^11.5 || ^12.5"
+    },
     "autoload": {
         "psr-4": {
             "jeremykenedy\\LaravelHttps\\": "src/"
@@ -28,6 +33,16 @@
                 "jeremykenedy\\LaravelHttps\\LaravelHttpsServiceProvider"
             ]
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "jeremykenedy\\LaravelHttps\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "pint",
+        "lint:test": "pint --test"
     },
     "config": {
         "sort-packages": true
