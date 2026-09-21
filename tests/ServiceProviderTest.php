@@ -152,7 +152,10 @@ class ServiceProviderTest extends TestCase
         $loader = $this->app['translation.loader'];
         $loader->addJsonPath($this->directory.'/resources/lang');
 
-        $this->assertSame('Welcome', $this->app['translator']->get('Hello'));
+        $translator = $this->app['translator'];
+        $translated = method_exists($translator, 'getFromJson') ? $translator->getFromJson('Hello') : $translator->get('Hello');
+
+        $this->assertSame('Welcome', $translated);
 
         if (method_exists(FileLoader::class, 'jsonPaths')) {
             $this->assertContains($this->directory.'/resources/lang', $loader->jsonPaths());

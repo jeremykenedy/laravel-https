@@ -65,7 +65,7 @@ jobs:
         run: composer update --no-plugins --prefer-dist --no-interaction --no-progress
       - name: Check PHP syntax
         run: find src tests -name '*.php' ! -name '*.blade.php' -print0 | xargs -0 -n1 php -l
-      - run: composer test
+      - run: composer --no-plugins test
 
   quality:
     name: Style, coverage, and dependency audit
@@ -81,5 +81,5 @@ jobs:
       - run: composer validate --strict
       - run: composer update --no-plugins --prefer-dist --no-interaction --no-progress
       - run: composer lint:test
-      - run: vendor/bin/phpunit --coverage-filter src --coverage-text
+      - run: vendor/bin/phpunit --configuration phpunit.coverage.xml --coverage-text
       - run: composer audit

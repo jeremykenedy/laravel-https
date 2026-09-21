@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true" failOnWarning="true">
+    <testsuites>
+        <testsuite name="Laravel HTTPS">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">src/App</directory>
+            <file>src/LaravelHttpsServiceProvider.php</file>
+            <file>src/PublishedTranslationLoader.php</file>
+        </include>
+    </source>
+</phpunit>

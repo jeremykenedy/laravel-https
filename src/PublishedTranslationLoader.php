@@ -69,9 +69,4 @@ class PublishedTranslationLoader extends FileLoader
     {
         return $this->loader->jsonPaths();
     }
-
-    public function __call($method, $parameters)
-    {
-        return $this->loader->{$method}(...$parameters);
-    }
 }

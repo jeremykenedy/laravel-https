@@ -203,7 +203,7 @@ composer audit
 Run `composer lint` to apply formatting. With Xdebug enabled, run:
 
 ```bash
-XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-filter src --coverage-text
+XDEBUG_MODE=coverage vendor/bin/phpunit --configuration phpunit.coverage.xml --coverage-text
 ```
 
 Tests use a real Laravel container, router, view compiler, and translator. They cover secure requests, redirects, query strings, environments, JSON and AJAX denials, custom statuses, missing views, published overrides, and trusted proxies.
