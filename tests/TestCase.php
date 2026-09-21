@@ -32,7 +32,7 @@ abstract class TestCase extends BaseTestCase
         $this->app = new Application($this->directory);
         $this->app->instance('env', 'testing');
         $this->app->instance('config', new Repository([
-            'app' => ['locale' => 'en', 'fallback_locale' => 'en', 'key' => str_repeat('a', 32)],
+            'app' => ['locale' => 'en', 'fallback_locale' => 'en', 'timezone' => 'UTC', 'key' => str_repeat('a', 32)],
             'view' => [
                 'paths' => [$this->directory.'/resources/views'],
                 'compiled' => $this->directory.'/storage/framework/views',
