@@ -1,0 +1,7 @@
+{
+    "preset": "laravel",
+    "paths": ["src", "tests"],
+    "rules": {
+        "ordered_class_elements": false
+    }
+}

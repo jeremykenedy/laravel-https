@@ -28,3 +28,6 @@ composer.phar
 vendor/
 /vendor
 /log
+.phpunit.result.cache
+/.phpunit.cache/
+/coverage/
