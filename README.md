@@ -9,9 +9,6 @@
 <p align="center">Laravel middleware to redirect HTTP requests to HTTPS or deny insecure requests.</p>
 
 <p align="center">
-    
-    
-    
     <a href="https://packagist.org/packages/jeremykenedy/laravel-https"><img src="https://poser.pugx.org/jeremykenedy/laravel-https/d/total.svg" alt="Total Downloads"></a>
     <a href="https://packagist.org/packages/jeremykenedy/laravel-https"><img src="https://poser.pugx.org/jeremykenedy/laravel-https/v/stable.svg" alt="Latest Stable Version"></a>
     <a href="https://github.com/jeremykenedy/laravel-https/actions/workflows/tests.yml"><img src="https://github.com/jeremykenedy/laravel-https/actions/workflows/tests.yml/badge.svg?branch=master" alt="Tests"></a>
